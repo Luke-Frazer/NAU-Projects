@@ -1,0 +1,249 @@
+# David Knight dmk276@nau.edu
+# Luke Frazier lef92@nau.edu
+import random
+
+
+def main():
+    # Sets the game grid to all zeros so that the init_change
+    # function can randomly click different lights to randomize
+    # the board.
+    game_grid = [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+    ]
+    init_change(game_grid, random.randint(5, 20))
+    # No moves have been made yet.
+    # Creates a loop to continue as long as the game is not solved.
+    # In the loop, shows the game board, runs the function to make
+    # a change to the squares, and increses the move count by one.
+    moves = 0
+    while game_running(game_grid) is True:
+        show(game_grid)
+        user_change(game_grid)
+        moves += 1
+
+    # When the game is solved, the final game board is shown and
+    # the victory message is shown.
+    show(game_grid)
+    print(f"You won with {moves} moves!")
+
+
+# Before the user can play, the board is randomized by letting the computer
+# click on a random number of lights that is 20-80% of the total lights on
+# the board. This way ensures that the game is solvable since the computer
+# follows all the rules for making it solvable.
+def init_change(board, freq):
+    list = []
+    for i in range(freq):
+        x = random.randint(0, 24)
+        while x in list:
+            x = random.randint(0, 24)
+        else:
+            list.append(x)
+        index = x
+        if check_corners(index) is True:
+            corner_mover(board, index)
+        elif check_left(index) is True:
+            board[index] = abs(board[index] - 1)
+            board[index + 5] = abs(board[index + 5] - 1)
+            board[index - 5] = abs(board[index - 5] - 1)
+            board[index + 1] = abs(board[index + 1] - 1)
+        elif check_right(index) is True:
+            board[index] = abs(board[index] - 1)
+            board[index + 5] = abs(board[index + 5] - 1)
+            board[index - 5] = abs(board[index - 5] - 1)
+            board[index - 1] = abs(board[index - 1] - 1)
+        elif check_top(index) is True:
+            board[index] = abs(board[index] - 1)
+            board[index + 5] = abs(board[index + 5] - 1)
+            board[index + 1] = abs(board[index + 1] - 1)
+            board[index - 1] = abs(board[index - 1] - 1)
+        elif check_bottom(index) is True:
+            board[index] = abs(board[index] - 1)
+            board[index - 5] = abs(board[index - 5] - 1)
+            board[index + 1] = abs(board[index + 1] - 1)
+            board[index - 1] = abs(board[index - 1] - 1)
+        else:
+            board[index] = abs(board[index] - 1)
+            board[index + 5] = abs(board[index + 5] - 1)
+            board[index - 5] = abs(board[index - 5] - 1)
+            board[index + 1] = abs(board[index + 1] - 1)
+            board[index - 1] = abs(board[index - 1] - 1)
+
+
+# These functions check to see if the changed light is on the
+# edge of the 5x5 grid and adjusts how the lights are changed
+# accordingly.
+def check_left(index):
+    return index in [5, 10, 15]
+
+
+def check_right(index):
+    return index in [9, 14, 19]
+
+
+def check_top(index):
+    return index in [1, 2, 3]
+
+
+def check_bottom(index):
+    return index in [21, 22, 23]
+
+
+def check_corners(index):
+    return index in [0, 4, 20, 24]
+
+
+# If the light is in one of the four corners, it follows a different
+# set of rules than on the edges because only 3 lights will be affected.
+# Therefore, if the check_corners() function returns True, then it will
+# run this corner_mover() function to adjust the corners properly.
+def corner_mover(board, index):
+    if index == 0:
+        board[index] = abs(board[index] - 1)
+        board[index + 5] = abs(board[index + 5] - 1)
+        board[index + 1] = abs(board[index + 1] - 1)
+    elif index == 4:
+        board[index] = abs(board[index] - 1)
+        board[index + 5] = abs(board[index + 5] - 1)
+        board[index - 1] = abs(board[index - 1] - 1)
+    elif index == 20:
+        board[index] = abs(board[index] - 1)
+        board[index - 5] = abs(board[index - 5] - 1)
+        board[index + 1] = abs(board[index + 1] - 1)
+    elif index == 24:
+        board[index] = abs(board[index] - 1)
+        board[index - 5] = abs(board[index - 5] - 1)
+        board[index - 1] = abs(board[index - 1] - 1)
+    else:
+        print('error with corners')
+
+
+# Function to check if the game has been solved.
+def game_running(board):
+    return 1 in board
+
+
+# Function to display the game board. This starts the board
+# out as zeros and ones for computing data, then converts the
+# numbers to white and black squares for the player to see,
+# and converts them back to numbers for the next data calculation.
+def show(board):
+    for loc in range(len(board)):
+        if board[loc] == 0:
+            board[loc] = '\N{WHITE SQUARE}'
+        elif board[loc] == 1:
+            board[loc] = '\N{BLACK SQUARE}'
+    for item in board[0:5]:
+        print(item, end=' ')
+    print()
+    for item in board[5:10]:
+        print(item, end=' ')
+    print()
+    for item in board[10:15]:
+        print(item, end=' ')
+    print()
+    for item in board[15:20]:
+        print(item, end=' ')
+    print()
+    for item in board[20:]:
+        print(item, end=' ')
+    print()
+#    print(board[0:5])
+#    print(board[5:10])
+#    print(board[10:15])
+#    print(board[15:20])
+#    print(board[20:])
+    for loc in range(len(board)):
+        if board[loc] == '\N{WHITE SQUARE}':
+            board[loc] = 0
+        elif board[loc] == '\N{BLACK SQUARE}':
+            board[loc] = 1
+
+
+# Fuction to convert the row to an index number.
+def row_index(row):
+    index = row // 5
+    return index
+
+
+# Function to convert columns to an index number.
+def col_index(col):
+    index = col % 5
+    return index
+
+
+# Primary function for giving the player the ability to change
+# a square location and its touching squares.
+def user_change(board):
+    row = int(input('Choose a row number (0-4): '))
+    col = int(input('Choose a column number (0-4): '))
+    # Checks if the inputed row and column is valid for the grid.
+    if row in [0, 1, 2, 3, 4] and col in [0, 1, 2, 3, 4]:
+        row = row
+        col = col
+    elif row and col not in [0, 1, 2, 3, 4]:
+        print('Error! Invalid input')
+        return None
+    else:
+        print('Nope')
+        return None
+    index = int((row * 5) + col)
+    print("Changed Index: ", index)
+    # Checks where the index is located and if it is along
+    # any of the edges or on the corners to be adjusted properly.
+    if check_corners(index) is True:
+        corner_mover(board, index)
+    elif check_left(index) is True:
+        board[index] = abs(board[index] - 1)
+        board[index + 5] = abs(board[index + 5] - 1)
+        board[index - 5] = abs(board[index - 5] - 1)
+        board[index + 1] = abs(board[index + 1] - 1)
+    elif check_right(index) is True:
+        board[index] = abs(board[index] - 1)
+        board[index + 5] = abs(board[index + 5] - 1)
+        board[index - 5] = abs(board[index - 5] - 1)
+        board[index - 1] = abs(board[index - 1] - 1)
+    elif check_top(index) is True:
+        board[index] = abs(board[index] - 1)
+        board[index + 5] = abs(board[index + 5] - 1)
+        board[index + 1] = abs(board[index + 1] - 1)
+        board[index - 1] = abs(board[index - 1] - 1)
+    elif check_bottom(index) is True:
+        board[index] = abs(board[index] - 1)
+        board[index - 5] = abs(board[index - 5] - 1)
+        board[index + 1] = abs(board[index + 1] - 1)
+        board[index - 1] = abs(board[index - 1] - 1)
+    else:
+        board[index] = abs(board[index] - 1)
+        board[index + 5] = abs(board[index + 5] - 1)
+        board[index - 5] = abs(board[index - 5] - 1)
+        board[index + 1] = abs(board[index + 1] - 1)
+        board[index - 1] = abs(board[index - 1] - 1)
+
+
+if __name__ == "__main__":
+    main()

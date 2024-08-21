@@ -1,0 +1,104 @@
+[
+    {
+        "prompt": "Which of the Mario games came first?",
+        "answers": [
+            "1: Super Mario Odyssey",
+            "2: Super Mario Run",
+            "3: Mario Bros",
+            "4: New Super Mario Bros"
+        ],
+        "correct": "3"
+    },
+    {
+        "prompt": "In which game did Mario first appear?",
+        "answers": [
+            "1: Ice Climber",
+            "2: Yoshi",
+            "3: The Legend of Zelda",
+            "4: Kid Icarus",
+			"5: Metal Gear Solid 2",
+			"6: Donkey Kong"
+        ],
+        "correct": "6"
+    },
+    {
+        "prompt": "In which year was the Super Mario Bros film released?",
+        "answers": [
+            "1: 1993",
+            "2: 2001",
+            "3: 2007",
+            "4: There is no film"
+        ],
+        "correct": "1"
+    },
+    {
+        "prompt": "What was Mario's original name?",
+        "answers": [
+            "1: Spanner Dude",
+            "2: Paolo",
+            "3: Jumpman",
+            "4: Fabio"
+        ],
+        "correct": "3"
+    },
+    {
+        "prompt": "What kind of job did Mario do before plumbing?",
+        "answers": [
+            "1: Carpenter",
+            "2: Baker",
+            "3: Dentist",
+            "4: Poet",
+			"5: Chef"
+        ],
+        "correct": "1"
+    },
+    {
+        "prompt": "What handedness is Link in most games?",
+        "answers": [
+            "1: Right",
+            "2: Left"
+        ],
+        "correct": "2"
+    },
+    {
+        "prompt": "What does the old man give Link in Breath of the Wild?",
+        "answers": [
+            "1: A bow and arrows",
+            "2: Bad advice",
+            "3: Baked apples",
+            "4: Breakable armor"
+        ],
+        "correct": "3"
+    },
+    {
+        "prompt": "In Breath of the Wild, where is Spectacle Rock found?",
+        "answers": [
+            "1: Great plateau",
+            "2: Tal Tal Mountain Ridge",
+            "3: Forest of Time",
+            "4: Gerudo Region"
+        ],
+        "correct": "4"
+    },
+    {
+        "prompt": "How many Legend of Zelda games feature Link in the Title?",
+        "answers": [
+            "1: 3",
+            "2: 4",
+            "3: 5",
+            "4: 6"
+        ],
+        "correct": "2"
+    },
+    {
+        "prompt": "What is the main part of a Goron's diet?",
+        "answers": [
+            "1: Rocks",
+            "2: Rubies",
+            "3: Rats",
+            "4: Rubber plants",
+			"5: Meat"
+        ],
+        "correct": "1"
+    }
+]

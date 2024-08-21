@@ -1,0 +1,32 @@
+Vim is modal
+	vim has different modes for different tasks 
+	normal mode is for keyboard commands (ESC)
+	ex mode is for typed commands with 'long' names 
+	insert mode is for inserting characters (i)
+	visual mode (SHIFT + v, CTRL + v, v)
+
+	switching modes switches what the keys do.
+	
+Vim has combinable commands:
+	motion commands and action commands can be combined
+	for example, in normal mode, 'd' is the action command to delete 
+	combine it with a motion to delete from point to the end of the motion
+
+Some commands:
+	Motion:
+		h, j, k, l - are like arrow keys
+		w and b - move forward and backward by words
+		0 and $ - move to the beginning or end of a line
+
+	Actions:
+		d - delete with a motion or another 'd' to get the whole line
+		c - same as 'd' but enter insert mode afterward
+		x - deletes the character under (in front of) point
+		p - pastes whatever was most recently deleted after point
+		P - pastes at point
+
+	Ex commands: 
+		type a colon in normal mode and then a name
+		:e <path_to_file> - edit file at the specified path
+		:w - save changes to file
+		:q - quit

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"p11_package","l":"BST_HashClass"}];updateSearchResults();
